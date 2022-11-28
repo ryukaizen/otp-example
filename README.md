@@ -26,12 +26,15 @@ Rename the `sample.env` file to `.env` first.
 To run this script, you will need to add the following environment variables to your .env file:
 
 `SENDER_EMAIL = your_email_address@xyz.com`
+
 `SENDER_EMAIL_PASS = password`
 
 Default variables:
 
 `EMAIL_OTP_SUBJECT = "Your OTP for OTP-Example:"`
+
 `EMAIL_SERVER_HOST = smtp.gmail.com`
+
 `EMAIL_SERVER_PORT = 587`
 
 
