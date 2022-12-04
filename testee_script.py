@@ -25,7 +25,6 @@ def get_otp_len(otp_len):
         return otp_len
 
 def get_otp_type(otp_type):
-
     if otp_type < 1 or otp_type > 7:
         raise AssertionError()("\n[x] Invalid OTP type selected.")          
     else:
@@ -84,7 +83,6 @@ def send_otp(otp, receiver_email):
     server.quit() # Terminate SMTP session
 
 def verify_otp(otp):
-
     while True:
         otp_input = input("\n[*] Enter the received OTP: ")
         if otp_input == otp:

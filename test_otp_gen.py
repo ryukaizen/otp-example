@@ -44,7 +44,6 @@ class TestOTP(unittest.TestCase):
 
     def testcase2(self):
         # Email Validation
-
         print("----------------------------------[Test case #2 - Email Validation]-----------------------------------")
         
         # receiver_email = input("\n[*] Enter receiver's email address: ")
@@ -55,7 +54,6 @@ class TestOTP(unittest.TestCase):
 
     def testcase3(self):
         # OTP Length
-
         print("----------------------------------[Test case #3 - OTP Length]-----------------------------------")
 
         # otp_len = int(input("\n\n[*] Enter OTP length (no. of digits). Minimum 4, maximum 8: "))
@@ -67,7 +65,6 @@ class TestOTP(unittest.TestCase):
 
     def testcase4(self):
         # OTP Type
-
         print("----------------------------------[Test case #4 - OTP Type]-----------------------------------")
 
         # Get OTP type

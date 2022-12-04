@@ -119,7 +119,6 @@ def send_otp(otp):
                 continue
             
 def verify_otp(otp):
-
     while True:
         try:
             otp_input = input("\n[*] To verify, enter the OTP you've received: ")
