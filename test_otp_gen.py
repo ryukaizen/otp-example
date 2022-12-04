@@ -5,7 +5,6 @@ import testee_script
 class TestOTP(unittest.TestCase):
     def testcase1(self):
         # Variable Input
-
         print("----------------------------------[Test case #1 - Variable Input]-----------------------------------")
         
         # Get receiver's email
