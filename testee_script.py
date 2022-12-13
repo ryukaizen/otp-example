@@ -20,13 +20,13 @@ def validate_email(receiver_email):
 
 def get_otp_len(otp_len):
     if otp_len < 4 or otp_len > 8:
-        raise AssertionError()("\n[x] OTP length should be between 4 to 8.\n\tPlease enter again.")
+        raise AssertionError("\n[x] OTP length should be between 4 to 8.\n\tPlease enter again.")
     else:
         return otp_len
 
 def get_otp_type(otp_type):
     if otp_type < 1 or otp_type > 7:
-        raise AssertionError()("\n[x] Invalid OTP type selected.")          
+        raise AssertionError("\n[x] Invalid OTP type selected.")          
     else:
         return otp_type
     
