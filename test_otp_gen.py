@@ -1,86 +1,116 @@
+# -------------------------------------------------------------------------------
+# This is my college assignment. I'm not responsible for any misuse of this code.
+#                       - Akash (github.com/ryukaizen)
+# -------------------------------------------------------------------------------
+
+# Possible examples of test cases 
+
 import unittest
-import smtplib
-import testee_script
+import string
+
+from main import OTP 
 
 class TestOTP(unittest.TestCase):
-    def testcase1(self):
-        # Variable Input
-        print("----------------------------------[Test case #1 - Variable Input]-----------------------------------")
+    
+    # Test cases for email validation:
+    def test_valid_email(self):
+        self.assertEqual(OTP.get_receiver_email("test@example.com"), "test@example.com")
+    
+    # Test cases for generated OTPs:
+    # Test the generation of an OTP of length 8, containing only digits:
+    def test_generate_otp_only_digits(self):
+        otp_len = 8
+        otp_type = 1
+        otp_code = OTP.generate_otp(self, otp_len, otp_type)
+        print("[1] Numbers only: ", otp_code)
         
-        # Get receiver's email
-        # receiver_email = "exampleemail@gmail.com" # Pass
-        receiver_email = input("\n[*] Enter receiver's email address: ")
-        valid_receiver_email = testee_script.validate_email(receiver_email)
+        # Check if the generated OTP is a string of 8 digits
+        assert len(otp_code) == 8
+        assert all(c in string.digits for c in otp_code)
+    
+    # Test the generation of an OTP of length 8, containing digits, uppercase letters, and lowercase letters:
+    def test_generate_otp_digits_uppercase_lowercase(self):
+        otp_len = 8
+        otp_type = 2
+        otp_code = OTP.generate_otp(self, otp_len, otp_type)
+        print("[2] Alphanumeric: ", otp_code)
 
-        # Get OTP length
-        # otp_len = 4 # Pass
-        otp_len = int(input("\n\n[*] Enter OTP length (no. of digits). Minimum 4, maximum 8: "))
-        valid_otp_len = testee_script.get_otp_len(otp_len)  
-
-        # Get OTP type
-        # otp_type = 2 # Pass
-        otp_type = int(input(   
-                    "\n[!] Select OTP type from below" +
-                    "\n\n-- [1] Numbers only" +
-                    "\n-- [2] Alphanumeric (alternating caps)" +
-                    "\n-- [3] Uppercase alphanumeric" +
-                    "\n-- [4] Lowercase alphanumeric" +
-                    "\n-- [5] Alphabets only (alternating caps)" +
-                    "\n-- [6] Uppercase alphabets only" +
-                    "\n-- [7] Lowercase alphabets only" +
-                    "\n\n[*] Enter your choice: "
-        ))
-        valid_otp_type = testee_script.get_otp_type(otp_type)
-
-        # Generate the OTP
-        otp = testee_script.generate_otp(valid_otp_len, valid_otp_type)
-
-        # Send the OTP
-        testee_script.send_otp(otp, valid_receiver_email)
-
-        # Verify the OTP
-        testee_script.verify_otp(otp)
-
-    def testcase2(self):
-        # Email Validation
-        print("----------------------------------[Test case #2 - Email Validation]-----------------------------------")
+        # Check if the generated OTP is a string of 8 characters containing at least one digit, 
+        # at least one uppercase letter, and at least one lowercase letter
+        assert len(otp_code) == 8
+        assert any(c in string.digits for c in otp_code)
+        assert any(c in string.ascii_uppercase for c in otp_code)
+        assert any(c in string.ascii_lowercase for c in otp_code)
         
-        # receiver_email = input("\n[*] Enter receiver's email address: ")
-        receiver_email = "exampleemail@gmail.com" # Pass
-        receiver_email = "exampleemail.com" # Fail
+    # Test the generation of an OTP of length 8, containing digits and uppercase letters:
+    def test_generate_otp_digits_uppercase(self):
+        otp_len = 8
+        otp_type = 3
+        otp_code = OTP.generate_otp(self, otp_len, otp_type)
+        print("[3] Uppercase alphanumeric: ", otp_code)
+        
+        # Check if the generated OTP is a string of 8 characters containing at least one digit 
+        # and at least one uppercase letter
+        assert len(otp_code) == 8
+        assert any(c in string.digits for c in otp_code)
+        assert any(c in string.ascii_uppercase for c in otp_code)
+    
+    # Test the generation of an OTP of length 8, containing digits, lowercase letters:
+    def test_generate_otp_digits_lowercase(self):
+        otp_len = 8
+        otp_type = 4
+        otp_code = OTP.generate_otp(self, otp_len, otp_type)
+        print("[4] Lowercase alphanumeric: ", otp_code)
+        
+        # Check if the generated OTP is a string of 8 characters containing at least one digit, 
+        # at least one lowercase letter
+        assert len(otp_code) == 8
+        assert any(c in string.digits for c in otp_code)
+        assert any(c in string.ascii_lowercase for c in otp_code)
+        
+    # Test the generation of an OTP of length 8, containing uppercase letters, and lowercase letters:
+    def test_generate_otp_uppercase_lowercase(self):
+        otp_len = 8
+        otp_type = 5
+        otp_code = OTP.generate_otp(self, otp_len, otp_type)
+        print("[5] Alphabets only: ", otp_code)
+        
+        # Check if the generated OTP is a string of 8 characters containing at least one uppercase letter, 
+        # and at least one lowercase letter
+        assert len(otp_code) == 8
+        assert any(c in string.ascii_uppercase for c in otp_code)
+        assert any(c in string.ascii_lowercase for c in otp_code)
+        
+    # Test the generation of an OTP of length 8, containing only uppercase letters:
+    def test_generate_otp_uppercase(self):
+        otp_len = 8
+        otp_type = 6
+        otp_code = OTP.generate_otp(self, otp_len, otp_type)
+        print("[6] Uppercase only: ", otp_code)
 
-        valid_receiver_email = testee_script.validate_email(receiver_email)
+        # Check if the generated OTP is a string of 8 uppercase letters
+        assert len(otp_code) == 8
+        assert all(c in string.ascii_uppercase for c in otp_code)
 
-    def testcase3(self):
-        # OTP Length
-        print("----------------------------------[Test case #3 - OTP Length]-----------------------------------")
-
-        # otp_len = int(input("\n\n[*] Enter OTP length (no. of digits). Minimum 4, maximum 8: "))
-        otp_len = 3 # Fail
-        # Or 
-        # otp_len = 9 # Fail
-        # otp_len = 4 # Pass
-        valid_otp_len = testee_script.get_otp_len(otp_len)  
-
-    def testcase4(self):
-        # OTP Type
-        print("----------------------------------[Test case #4 - OTP Type]-----------------------------------")
-
-        # Get OTP type
-        # otp_type = int(input(   
-        #             "\n[!] Select OTP type from below" +
-        #             "\n\n-- [1] Numbers only" +
-        #             "\n-- [2] Alphanumeric (alternating caps)" +
-        #             "\n-- [3] Uppercase alphanumeric" +
-        #             "\n-- [4] Lowercase alphanumeric" +
-        #             "\n-- [5] Alphabets only (alternating caps)" +
-        #             "\n-- [6] Uppercase alphabets only" +
-        #             "\n-- [7] Lowercase alphabets only" +
-        #             "\n\n[*] Enter your choice: "
-        # ))
-        otp_type = 8 # Fail
-        valid_otp_type = testee_script.get_otp_type(otp_type)
-        print("------------------------------------------------------------------------------------------------\n")
+    # Test the generation of an OTP of length 8, containing only lowercase letters:
+    def test_generate_otp_lowercase(self):
+        otp_len = 8
+        otp_type = 7
+        otp_code = OTP.generate_otp(self, otp_len, otp_type)
+        print("[7] Lowercase only: ", otp_code)
+        
+        # Check if the generated OTP is a string of 8 lowercase letters
+        assert len(otp_code) == 8
+        assert all(c in string.ascii_lowercase for c in otp_code)
+        
+    # Test case to verify generated otp
+    def test_verify_otp_valid(self):
+        generated_otp_code = OTP.generate_otp(self, 8, 2)
+        to_verify = generated_otp_code
+        # to_verify = 12345
+        print("Generated OTP for verification: ", generated_otp_code)
+        print("Input OTP for verification: ", to_verify)
+        self.assertEqual(generated_otp_code, to_verify, "Invalid OTP!")
 
 if __name__ == '__main__':
     unittest.main()

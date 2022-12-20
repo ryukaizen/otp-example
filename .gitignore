@@ -1,4 +1,5 @@
 .vscode
+.trash
 __pycache__
 
 .venv

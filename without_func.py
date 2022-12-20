@@ -1,4 +1,9 @@
-# Without functional decomposition
+# -------------------------------------------------------------------------------
+# This is my college assignment. I'm not responsible for any misuse of this code.
+#                       - Akash (github.com/ryukaizen)
+# -------------------------------------------------------------------------------
+
+# Without functional decomposition 
 
 import os
 import random
@@ -34,6 +39,7 @@ else:
             "\t\tHost: {}\n\t\tPort: {}\033[0m".format(EMAIL_SERVER_HOST, EMAIL_SERVER_PORT) +
             "\n\033[30;48;5;34m-----------------------------------------------------------\033[0m\n")
 
+# Gets OTP length from user
 while True:
     try:
         otp_len = int(input("\n\n[*] Enter OTP length (no. of digits). Minimum 4, maximum 8: "))         
@@ -46,6 +52,7 @@ while True:
     else:   
         break
 
+# Gets OTP type from user
 while True:
     try:
         otp_type = int(input(   
@@ -68,7 +75,8 @@ while True:
         continue
     else:
         break
-        
+
+# Generates OTP
 otp = ""
 
 if otp_type == 1:
@@ -93,8 +101,8 @@ elif otp_type == 7:
     for i in range(otp_len):
         otp += random.choice(string.ascii_lowercase)
 
+# Gets receiver's email address from user
 regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'   
-
 while True:
     try:
         receiver_email = input("\n[*] Enter receiver's email address: ")
@@ -120,7 +128,8 @@ while True:
         else:
             print("[x] Invalid email address! Try again.")
             continue
-        
+
+# Verifies OTP   
 while True:
     try:
         otp_input = input("\n[*] To verify, enter the OTP you've received: ")
