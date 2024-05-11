@@ -1,3 +1,7 @@
+<div align="center"> 
+        <img src="https://github.com/ryukaizen/otp-example/assets/55140313/5285d18f-81a3-4259-a574-49f8479cb3bd" alt="padlock" width="130px" height="130px"> <!-- Otp icons created by Icon home - Flaticon (https://www.flaticon.com/free-icons/otp) -->
+</div> 
+
 # OTP-Example
 
 A Python script to demonstrate basic OTP (One-time password) generation, verification and delivery of emails using the Simple Mail Transfer Protocol (SMTP) library.
@@ -47,4 +51,4 @@ Then follow these steps:
 3. Replace the password with the generated app password (a sixteen-digit password).
 
 ### Note:
-This is just my college assignment for Software Engineering subject. I'm in no way responsible for whatever you do with it.
+This is just my college assignment for the Software Engineering subject. I'm in no way responsible for whatever you do with it.
